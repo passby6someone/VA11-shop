@@ -1,0 +1,19 @@
+name: 'main branch ci'
+# description: ''
+inputs:
+  target:  # id of input
+    description: 'target socket'
+    required: true
+    default: '106.52.81.28:9527'
+  type:
+    required: true
+    default: 'push'
+  status:
+    required: true
+    default: 'DONE'
+outputs:
+  time: # id of output
+    description: 'The time step done'
+runs:
+  using: 'node12'
+  main: 'main_action.js'
