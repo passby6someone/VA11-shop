@@ -16,4 +16,4 @@ outputs:
     description: 'The time step done'
 runs:
   using: 'node12'
-  main: 'main_action.js'
+  main: 'action.js'

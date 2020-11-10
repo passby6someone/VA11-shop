@@ -1,0 +1,20 @@
+name: Build app and deploy to aliyun
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: mainActon
+      uses: ./.github/actions
+      id: mainAction
+      with:
+        target: '106.52.81.28:9527'
+        type: 'push'
+        status: 'DONE'
