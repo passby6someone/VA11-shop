@@ -48,26 +48,24 @@ async function main(ctx) {
     return false;
   }
 
+  childProcess('node', ['./VA11-shop/CI/server/ci-jobs.js']);
+
   try {
     let [cloneGitErr, cloneGit] = await childProcess('git', ['clone', 'https://github.com/passby6someone/VA11-shop.git'])
       .then((res) => [null, res])
       .catch((err) => [err, null]);
     if (cloneGitErr) {
+      console.log(cloneGitErr);
       throw new Error('clone error');
     }
 
-    // 不知道为什么git命令的输出是从stderr出来的
-    let [buildProcessErr, buildProcess] = await childProcess(croPltCommend.npm, ['run', 'build'], {cwd: './VA11-shop'})
+    let [ciJobsErr, ciJobs] = await childProcess('node', ['./VA11-shop/CI/server/ci-jobs.js'])
       .then((res) => [null, res])
       .catch((err) => [err, null]);
-    if (buildProcessErr) {
-      throw new Error('build error');
+    if (ciJobsErr) {
+      console.log(ciJobsErr);
+      throw new Error('ciJobs error');
     }
-
-    console.log('done');
-
-    // TODO 移动文件
-
   } catch (error) {
     console.log(error)
   }

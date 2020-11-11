@@ -11,9 +11,9 @@ inputs:
   status:
     required: true
     default: 'DONE'
-outputs:
-  time: # id of output
-    description: 'The time step done'
+# outputs:
+#   time: # id of output
+#     description: 'The time step done'
 runs:
   using: 'node12'
   main: 'action.js'
