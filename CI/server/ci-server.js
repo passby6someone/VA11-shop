@@ -4,15 +4,6 @@ const app = new koa();
 
 const has  = Object.hasOwnProperty;
 
-class crossPlatformCommend {
-  constructor() {
-    const { platform } = process;
-    this.npm = platform === 'win32' ? 'npm.cmd' : 'npm';
-  }
-}
-
-const croPltCommend = new crossPlatformCommend();
-
 function childProcess(...commend) {
   return new Promise((resolve, reject) => {
     childPro = child_process.spawn(...commend);
@@ -48,9 +39,10 @@ async function main(ctx) {
     return false;
   }
 
-  childProcess('node', ['./VA11-shop/CI/server/ci-jobs.js']);
+  console.log('ci start');
 
   try {
+    console.log('clone start');
     let [cloneGitErr, cloneGit] = await childProcess('git', ['clone', 'https://github.com/passby6someone/VA11-shop.git'])
       .then((res) => [null, res])
       .catch((err) => [err, null]);
@@ -59,6 +51,7 @@ async function main(ctx) {
       throw new Error('clone error');
     }
 
+    console.log('ci jobs start');
     let [ciJobsErr, ciJobs] = await childProcess('node', ['./VA11-shop/CI/server/ci-jobs.js'])
       .then((res) => [null, res])
       .catch((err) => [err, null]);
@@ -69,6 +62,8 @@ async function main(ctx) {
   } catch (error) {
     console.log(error)
   }
+
+  console.log('everything done');
 }
 
 app.use(responseFetch);

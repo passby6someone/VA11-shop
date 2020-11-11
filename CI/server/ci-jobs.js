@@ -34,30 +34,27 @@ class crossPlatformCommend {
 const croPltCommend = new crossPlatformCommend();
 
 async function main() {
-  console.log('run build');
-  let [buildProcessErr, buildProcess] = await childProcess(croPltCommend.npm, ['run', 'build'], {cwd: '../../'})
+  let [buildProcessErr, buildProcess] = await childProcess(croPltCommend.npm, ['run', 'build'], {cwd: './VA11-shop'})
     .then((res) => [null, res])
     .catch((err) => [err, null]);
   if (buildProcessErr) {
     throw new Error('build error');
   }
 
-  console.log('run move file');
   let [moveProcessErr, moveProcess] = await new Promise((resolve, reject) => {
     try {
-      let status = fs.statSync('/test/VA11-shop');
-      if (status.isDirectory()) {
-        fs.rmdirSync('/test/VA11-shop');
-        fs.renameSync('/test/VA-11-CI/VA11-shop', '/test/VA11-shop');
-        fs.rmdirSync('/test/VA-11-CI/VA11-shop');
+      if (fs.existsSync('/test/VA11-shop') && fs.statSync('/test/VA11-shop').isDirectory()) {
+        childProcess('rm', ['-rf', '/test/VA11-shop']).then(() => fs.renameSync('/test/VA-11-CI/VA11-shop', '/test/VA11-shop'));
         resolve();
       }
+      fs.renameSync('/test/VA-11-CI/VA11-shop', '/test/VA11-shop');
+      resolve();
     } catch (err) {
       reject(err);
     }
   })
-    .then((res) => [null, res])
-    .catch((err) => [err, null]);
+  .then((res) => [null, res])
+  .catch((err) => [err, null]);
   if (moveProcessErr) {
     throw new Error('move file error');
   }
