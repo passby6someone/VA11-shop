@@ -1,32 +1,9 @@
-const child_process = require('child_process');
 const koa = require('koa');
 const app = new koa();
 
+const { deleteFolder, childProcess } = require('./util.js');
+
 const has  = Object.hasOwnProperty;
-
-function childProcess(...commend) {
-  return new Promise((resolve, reject) => {
-    childPro = child_process.spawn(...commend);
-    successChunk = [];
-    errorChunk = [];
-    childPro.stdout.on('data', (data) => successChunk.push(data));
-    childPro.stdout.on('end', () => {
-      if (successChunk.length !== 0) {
-        resolve(successChunk.join('').toString());
-      }
-    });
-
-    childPro.stderr.on('data', (data) => errorChunk.push(data));
-    childPro.stderr.on('end', () => {
-      if (errorChunk.length !== 0) {
-        reject(errorChunk.join('').toString());
-      }
-    });
-
-    childPro.on('error', (err) => reject(err));
-    childPro.on('close', (code) => resolve(code));
-  });
-}
 
 function responseFetch(ctx, next) {
   ctx.body = { status: "sucess" };
@@ -42,8 +19,17 @@ async function main(ctx) {
   console.log('ci start');
 
   try {
+    // 如上次构建失败未删除，clone会受阻
+    console.log('remove old git repository');
+    let [removeProcessErr, removeProcess] = await deleteFolder('/test/VA11-shop')
+      .then((res) => [null, res])
+      .catch((err) => [err, null]);
+    if (removeProcessErr) {
+      throw new Error('remove error');
+    }
+
     console.log('clone start');
-    let [cloneGitErr, cloneGit] = await childProcess('git', ['clone', 'https://github.com/passby6someone/VA11-shop.git'])
+    let [cloneGitErr, cloneGit] = await childProcess('git', ['clone', 'https://github.com/passby6someone/VA11-shop.git'], { cwd: '/test' })
       .then((res) => [null, res])
       .catch((err) => [err, null]);
     if (cloneGitErr) {
@@ -51,8 +37,16 @@ async function main(ctx) {
       throw new Error('clone error');
     }
 
+    console.log('install start');
+    let [installProcessErr, installProcess] = await childProcess('npm', ['run', 'install'], {cwd: '/test/VA11-shop'})
+      .then((res) => [null, res])
+      .catch((err) => [err, null]);
+    if (installProcessErr) {
+      throw new Error('install error');
+    }
+
     console.log('ci jobs start');
-    let [ciJobsErr, ciJobs] = await childProcess('node', ['./VA11-shop/CI/server/ci-jobs.js'])
+    let [ciJobsErr, ciJobs] = await childProcess('node', ['/test/VA11-shop/CI/server/ci-jobs.js'])
       .then((res) => [null, res])
       .catch((err) => [err, null]);
     if (ciJobsErr) {

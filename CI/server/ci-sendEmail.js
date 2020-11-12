@@ -10,13 +10,13 @@ const config = {
     // 发件人邮箱账号
     user: '1594636706@qq.com',
     //发件人邮箱的授权码 这里可以通过qq邮箱获取 并且不唯一
-    pass: 'bkgldmnryqcdgche'
+    pass: process.env.VA11_SMTP,
   }
 }
 
 const transporter = nodemailer.createTransport(config)
 
-function mailMaker(subject="构建结果", text="构建成功") {
+function mailMaker(subject='构建成功', text='') {
   return {
     // 发件人 邮箱  '昵称<发件人邮箱>'
     from: '路过的甲同学<1594636706@qq.com>',
