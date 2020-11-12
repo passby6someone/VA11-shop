@@ -1,5 +1,6 @@
 const child_process = require('child_process');
 const fs = require('fs');
+const { mailMaker, sendEmail } = require('./emailTest.js');
 
 function childProcess(...commend) {
   return new Promise((resolve, reject) => {
@@ -33,7 +34,19 @@ class crossPlatformCommend {
 }
 const croPltCommend = new crossPlatformCommend();
 
+process.on('uncaughtException', (err) => {
+  const mail = mailMaker('构建失败', err);
+  sendEmail(mail);
+});
+
 async function main() {
+  let [installProcessErr, installProcess] = await childProcess(croPltCommend.npm, ['run', 'install'], {cwd: './VA11-shop'})
+    .then((res) => [null, res])
+    .catch((err) => [err, null]);
+  if (installProcessErr) {
+    throw new Error('install error');
+  }
+
   let [buildProcessErr, buildProcess] = await childProcess(croPltCommend.npm, ['run', 'build'], {cwd: './VA11-shop'})
     .then((res) => [null, res])
     .catch((err) => [err, null]);
@@ -57,6 +70,14 @@ async function main() {
   .catch((err) => [err, null]);
   if (moveProcessErr) {
     throw new Error('move file error');
+  }
+
+  let [sendProcessErr, sendProcess] = await new Promise((resolve, reject) => {
+    const mail = mailMaker('构建成功', new Date().toString());
+    sendEmail(mail);
+  });
+  if (sendProcessErr) {
+    throw new Error('send email error');
   }
 }
 
