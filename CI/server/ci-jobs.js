@@ -15,7 +15,7 @@ process.on('uncaughtException', (err) => {
 });
 
 async function main() {
-  let [buildProcessErr, buildProcess] = await childProcess(croPltCommend.npm, ['run', 'build'], {cwd: '/test/VA11-shop'})
+  let [buildProcessErr, buildProcess] = await childProcess(croPltCommend.npm, ['run', 'start:server'], {cwd: '/test/VA11-shop'})
     .then((res) => [null, res])
     .catch((err) => [err, null]);
   if (buildProcessErr) {
