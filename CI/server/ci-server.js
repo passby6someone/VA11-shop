@@ -38,7 +38,7 @@ async function main(ctx) {
     }
 
     console.log('install start');
-    let [installProcessErr, installProcess] = await childProcess('npm', ['run', 'install'], {cwd: '/test/VA11-shop'})
+    let [installProcessErr, installProcess] = await childProcess('npm', ['run', 'install:CI'], {cwd: '/test/VA11-shop'})
       .then((res) => [null, res])
       .catch((err) => [err, null]);
     if (installProcessErr) {
