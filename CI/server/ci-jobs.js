@@ -15,6 +15,8 @@ process.on('uncaughtException', (err) => {
 });
 
 async function main() {
+  let startTime = new Date().toString();
+
   let [buildProcessErr, buildProcess] = await childProcess(croPltCommend.npm, ['run', 'start:server'], {cwd: '/test/VA11-shop'})
     .then((res) => [null, res])
     .catch((err) => [err, null]);
@@ -23,7 +25,7 @@ async function main() {
   }
 
   let [sendProcessErr, sendProcess] = await new Promise((resolve, reject) => {
-    const mail = mailMaker('构建成功', new Date().toString());
+    const mail = mailMaker('构建成功', `开始时间: ${startTime}。\n结束时间: ${new Date().toString()}`);
     sendEmail(mail);
   });
   if (sendProcessErr) {
