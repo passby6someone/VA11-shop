@@ -67,6 +67,7 @@ class recordExecTime {
     this.data[jobName] = {
       startTime: new Date(),
       endTime: null,
+      spendTime: ''
     }
 
     return true;
@@ -77,7 +78,10 @@ class recordExecTime {
       return false;
     }
 
-    this.data[jobName].endTime = new Date();
+    const job = this.data[jobName];
+    job.endTime = new Date();
+    const spendTime = job.endTime - job.startTime;
+    job.spendTime = `${(spendTime / 1000).toFixed(6)}秒`;
 
     return true;
   }

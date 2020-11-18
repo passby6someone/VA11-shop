@@ -21,7 +21,7 @@ function mailMaker(subject='构建成功', recorder) {
   text = "";
   for (let i in records) {
     const job = records[i];
-    text += `<li>${i} 用时: ${job.startTime - job.endTime}</li>`;
+    text += `<li>${i} 用时: ${job.spendTime}</li>`;
   }
 
   return {
