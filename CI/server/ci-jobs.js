@@ -1,5 +1,5 @@
 const { mailMaker, sendEmail } = require('./ci-sendEmail.js');
-const { childProcess } = require('./util.js');
+const { childProcess, recorder } = require('./util.js');
 
 class crossPlatformCommend {
   constructor() {
@@ -15,17 +15,21 @@ process.on('uncaughtException', (err) => {
 });
 
 async function main() {
-  let startTime = new Date().toString();
+  recorder.recordStart('ALL');
 
+  recorder.recordStart('INSTALL&BUILD');
   let [buildProcessErr, buildProcess] = await childProcess(croPltCommend.npm, ['run', 'start:server'], {cwd: '/test/VA11-shop'})
     .then((res) => [null, res])
     .catch((err) => [err, null]);
   if (buildProcessErr) {
     throw new Error('build error');
   }
+  recorder.recordEnd('INSTALL&BUILD');
+
+  recorder.recordEnd('ALL');
 
   let [sendProcessErr, sendProcess] = await new Promise((resolve, reject) => {
-    const mail = mailMaker('构建成功', `开始时间: ${startTime}。\n结束时间: ${new Date().toString()}`);
+    const mail = mailMaker('构建成功', recorder);
     sendEmail(mail);
   });
   if (sendProcessErr) {

@@ -54,7 +54,43 @@ function childProcess (...commend) {
   });
 }
 
+class recordExecTime {
+  constructor () {
+    this.data = {};
+  }
+
+  recordStart(jobName) {
+    if (this.data.hasOwnProperty(jobName)) {
+      return false;
+    }
+
+    this.data[jobName] = {
+      startTime: new Date(),
+      endTime: null,
+    }
+
+    return true;
+  }
+
+  recordEnd(jobName) {
+    if (!this.data.hasOwnProperty(jobName)) {
+      return false;
+    }
+
+    this.data[jobName].endTime = new Date();
+
+    return true;
+  }
+
+  getRecords() {
+    return this.data;
+  }
+}
+
+const recorder = new recordExecTime();
+
 module.exports = {
   deleteFolder,
   childProcess,
+  recorder,
 }
