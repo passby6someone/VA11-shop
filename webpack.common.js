@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const DelWebpackPlugin = require('del-webpack-plugin')
+// const DelWebpackPlugin = require('del-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -40,11 +41,11 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".json"]
   },
   plugins: [
-    new DelWebpackPlugin(),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'VA11-shop',
       inject: 'body',
-      template: 'dist/index.html'
+      template: 'public/index.html'
     }),
   ],
 };
