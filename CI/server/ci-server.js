@@ -1,7 +1,6 @@
 const koa = require('koa');
 const app = new koa();
 
-const { mailMaker, sendEmail } = require('./ci-sendEmail.js');
 const { deleteFolder, childProcess, recorder } = require('./util.js');
 
 const has  = Object.hasOwnProperty;
@@ -53,24 +52,15 @@ async function main(ctx) {
     }
     recorder.recordEnd('INSTALL:CI');
 
+    recorder.recordEnd('ALL');
+
     console.log('ci jobs start');
-    let [ciJobsErr, ciJobs] = await childProcess('node', ['/test/VA11-shop/CI/server/ci-jobs.js'])
+    let [ciJobsErr, ciJobs] = await childProcess('node', ['/test/VA11-shop/CI/server/ci-jobs.js', recorder.toString()])
       .then((res) => [null, res])
       .catch((err) => [err, null]);
     if (ciJobsErr) {
       console.log(ciJobsErr);
       throw new Error('ciJobs error');
-    }
-    recorder.parseRecords(ciJobs);
-
-    recorder.recordEnd('ALL')
-
-    let [sendProcessErr, sendProcess] = await new Promise((resolve, reject) => {
-      const mail = mailMaker('构建成功', recorder);
-      sendEmail(mail);
-    });
-    if (sendProcessErr) {
-      throw new Error('send email error');
     }
 
   } catch (error) {

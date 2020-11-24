@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport(config)
 function mailMaker(subject='构建成功', recorder) {
   const records = recorder.getRecords();
   text = "";
-  for (let i of recorder.schedule) {
+  for (let i in records) {
     const job = records[i];
     text += `<li>${i} 用时: ${`${(job.spendTime / 1000).toFixed(2)}秒`}</li>`;
   }
@@ -43,8 +43,7 @@ function sendEmail(mail){
       if(error) {
           return console.log(error);
       }
-      transporter.close()
-      console.log('mail sent:', info.response)
+      transporter.close();
   })
 }
 

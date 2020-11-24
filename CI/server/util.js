@@ -57,7 +57,7 @@ function childProcess (...commend) {
 class recordExecTime {
   constructor () {
     this.data = {};
-    this.schedule = ['ALL', 'REMOVE', 'CLONE', 'INSTALL:CI', 'INSTALL&BUILD'];
+    this.schedule = ['ALL', 'REMOVE', 'CLONE', 'INSTALL:CI', 'INSTALL_BUILD'];
   }
 
   recordStart(jobName) {
@@ -87,14 +87,9 @@ class recordExecTime {
   }
 
   recordContinue(jobName, time) {
-    if (!this.data.hasOwnProperty(jobName)) {
-      return false;
-    }
-
     this.data[jobName] = {
       startTime: new Date(new Date() - time),
       endTime: null,
-      spendTime: 0
     }
   }
 
@@ -115,7 +110,7 @@ class recordExecTime {
         spendTime: parseInt(value)
       };
     });
-    this.setRecords(o);
+    this.data = Object.assign({}, this.data, o);
     return true;
   }
 
