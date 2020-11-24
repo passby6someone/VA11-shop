@@ -19,9 +19,9 @@ const transporter = nodemailer.createTransport(config)
 function mailMaker(subject='构建成功', recorder) {
   const records = recorder.getRecords();
   text = "";
-  for (let i in records) {
+  for (let i of recorder.schedule) {
     const job = records[i];
-    text += `<li>${i} 用时: ${job.spendTime}</li>`;
+    text += `<li>${i} 用时: ${`${(job.spendTime / 1000).toFixed(2)}秒`}</li>`;
   }
 
   return {

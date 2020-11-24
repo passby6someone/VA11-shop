@@ -57,6 +57,7 @@ function childProcess (...commend) {
 class recordExecTime {
   constructor () {
     this.data = {};
+    this.schedule = ['ALL', 'REMOVE', 'CLONE', 'INSTALL:CI', 'INSTALL&BUILD'];
   }
 
   recordStart(jobName) {
@@ -80,10 +81,46 @@ class recordExecTime {
 
     const job = this.data[jobName];
     job.endTime = new Date();
-    const spendTime = job.endTime - job.startTime;
-    job.spendTime = `${(spendTime / 1000).toFixed(6)}秒`;
+    job.spendTime = job.endTime - job.startTime;
 
     return true;
+  }
+
+  recordContinue(jobName, time) {
+    if (!this.data.hasOwnProperty(jobName)) {
+      return false;
+    }
+
+    this.data[jobName] = {
+      startTime: new Date(new Date() - time),
+      endTime: null,
+      spendTime: 0
+    }
+  }
+
+  toString() {
+    let str = "";
+    for (let i in this.data) {
+      str += `${i}=${this.data[i]['spendTime']}&`;
+    }
+    return str.slice(0, -1);
+  }
+
+  parseRecords(recordStr) {
+    let o = {};
+    const arr = recordStr.split('&');
+    arr.forEach((cur) => {
+      const [key, value] = cur.split('=');
+      o[key] = {
+        spendTime: parseInt(value)
+      };
+    });
+    this.setRecords(o);
+    return true;
+  }
+
+  setRecords(data) {
+    this.data = data;
   }
 
   getRecords() {
