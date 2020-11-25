@@ -1,4 +1,4 @@
-const { childProcess, recorder } = require('./util.js');
+const { childProcess, recordExecTime } = require('./util.js');
 const { mailMaker, sendEmail } = require('./ci-sendEmail.js');
 
 class crossPlatformCommend {
@@ -15,6 +15,8 @@ process.on('uncaughtException', (err) => {
 });
 
 async function main() {
+  const recorder = new recordExecTime();
+
   const recordStr = process.argv[2];
   recorder.parseRecords(recordStr);
   recorder.recordContinue('ALL', recorder.data['ALL'].spendTime);

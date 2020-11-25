@@ -1,7 +1,7 @@
 const koa = require('koa');
 const app = new koa();
 
-const { deleteFolder, childProcess, recorder } = require('./util.js');
+const { deleteFolder, childProcess, recordExecTime } = require('./util.js');
 
 const has  = Object.hasOwnProperty;
 
@@ -15,6 +15,8 @@ async function main(ctx) {
   if (!has.call(ctx.query, 'push') || ctx.query['push'] !== 'DONE') {
     return false;
   }
+
+  const recorder = new recordExecTime();
 
   console.log('ci start');
 

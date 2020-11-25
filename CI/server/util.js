@@ -68,7 +68,7 @@ class recordExecTime {
     this.data[jobName] = {
       startTime: new Date(),
       endTime: null,
-      spendTime: ''
+      spendTime: 0
     }
 
     return true;
@@ -123,10 +123,8 @@ class recordExecTime {
   }
 }
 
-const recorder = new recordExecTime();
-
 module.exports = {
   deleteFolder,
   childProcess,
-  recorder,
+  recordExecTime,
 }
