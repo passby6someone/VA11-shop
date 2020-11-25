@@ -7,7 +7,13 @@
       "target": "es5",
       "jsx": "react",
       "skipLibCheck": true,
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
+      "baseUrl": "./",
+      "paths": {
+        "@actions/*": ["src/redux/actions/*"],
+        "@reducer/*": ["src/redux/reducer/*"],
+        "@store/*": ["src/redux/store/*"],
+      }
   },
   "files": [
     "src/index.tsx"
