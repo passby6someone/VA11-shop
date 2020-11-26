@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import { INIT, InitAction } from '@actions/actions';
-import { Store } from '../store/store';
+import { Store } from '@store/store';
 
 const initStore: Store = {
   init: {

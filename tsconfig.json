@@ -13,9 +13,13 @@
         "@actions/*": ["src/redux/actions/*"],
         "@reducer/*": ["src/redux/reducer/*"],
         "@store/*": ["src/redux/store/*"],
+        "@component/*": ["src/components/*"]
       }
   },
   "files": [
     "src/index.tsx"
+  ],
+  "include": [
+    "src/**/*"
   ]
 }

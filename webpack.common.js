@@ -42,6 +42,7 @@ module.exports = {
       '@actions': path.resolve('src/redux/actions'),
       '@reducer': path.resolve('src/redux/reducer'),
       '@store': path.resolve('src/redux/store'),
+      "@component": path.resolve('src/component')
     },
     extensions: [".ts", ".tsx", ".js", ".json"]
   },

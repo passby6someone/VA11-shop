@@ -60,6 +60,7 @@
   },
   "husky": {
     "hooks": {
+      "pre-commit": "eslint ./",
       "commit-msg": "node CI/husky-verify/verify-commit.js"
     }
   },
