@@ -9,6 +9,15 @@
 
 <body>
   <div id="root"></div>
+  <script>
+    function setRootFontSize() {
+      var html = document.getElementsByTagName('html')[0];
+      html.setAttribute('style', 'font-size:' + (window.innerWidth * 2 / 15) + 'px');
+    }
+    setRootFontSize();
+    window.addEventListener("resize", setRootFontSize);
+  </script>
 </body>
+
 
 </html>
