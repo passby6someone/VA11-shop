@@ -2,7 +2,7 @@ import React from 'react';
 
 import './MasonryItem.css';
 
-function MasonryItem() {
+function MasonryItem(): JSX.Element {
   return (
     <div className="MasonryItem-container">
       <div className="item-thumbnail">
