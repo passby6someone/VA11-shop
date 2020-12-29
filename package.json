@@ -65,6 +65,7 @@
     }
   },
   "dependencies": {
+    "@ant-design/icons": "^4.3.0",
     "@loadable/component": "^5.14.1",
     "antd-mobile": "^2.3.4",
     "react": "^17.0.1",
