@@ -6,7 +6,7 @@ import Item from '@component/MasonryItem/MasonryItem';
 
 function IndexItems() {
   return (
-    <div style={{ height: 'calc(100vh - 45px)', overflow: 'scroll' }}>
+    <div style={{ height: 'calc(100vh - 95px)', overflow: 'scroll' }}>
       <MasonryContainer>
         <Link to="/item"><Item /></Link>
         <Item />

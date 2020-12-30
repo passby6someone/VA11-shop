@@ -1,11 +1,11 @@
 import React from 'react';
 
-import IndexNav from './IndexNav/IndexTabs';
+import IndexTabBar from './IndexTabBar/IndexTabBar';
 
 function IndexPage():JSX.Element {
   return (
     <div>
-      <IndexNav />
+      <IndexTabBar />
     </div>
   );
 }
