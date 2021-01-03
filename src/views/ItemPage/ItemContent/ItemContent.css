@@ -1,0 +1,19 @@
+.ItemContent-section {
+  padding: 0.2rem;
+  margin-bottom: 50px;
+}
+
+.ItemContent-footer-container {
+  display: flex;
+  justify-content: space-between;
+  color: #999;
+  align-items: center;
+}
+
+.ItemContent-footer-container .ItemContent-dislikeButton {
+  display: flex;
+  align-items: center;
+  border: 1px solid #999;
+  border-radius: 64px;
+  padding: 0.1rem;
+}

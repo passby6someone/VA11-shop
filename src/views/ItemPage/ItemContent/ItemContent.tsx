@@ -1,32 +1,30 @@
 import React from 'react';
 import { FrownOutlined } from '@ant-design/icons';
 
+import './ItemContent.css';
+
 function ItemContent(): JSX.Element {
   return (
-    <div>
-      <div style={{ padding: '0.2rem', marginBottom: '50px' }}>
-        <h2>TITLE</h2>
-        <p>
-          来空间和官方官方
-        </p>
-        <div
-          style={{
-            display: 'flex', justifyContent: 'space-between', color: 'rgba(127,127,127,0.5)', alignItems: 'center',
-          }}
-        >
+    <article>
+      <section className="ItemContent-section">
+        <header>
+          <h2>TITLE</h2>
+        </header>
+        <main>
+          <p>
+            来空间和官方官方
+          </p>
+        </main>
+        <footer className="ItemContent-footer-container">
           <div>11-12</div>
-          <div
-            style={{
-              display: 'flex', alignItems: 'center', border: '1px solid', borderRadius: '64px', padding: '0.1rem',
-            }}
-          >
+          <div className="ItemContent-dislikeButton">
             <FrownOutlined />
-            <div style={{ verticalAlign: 'middle' }}>&nbsp;不喜欢</div>
+            <div>&nbsp;不喜欢</div>
           </div>
-        </div>
-      </div>
+        </footer>
+      </section>
       <hr />
-    </div>
+    </article>
   );
 }
 

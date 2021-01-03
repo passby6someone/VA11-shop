@@ -40,7 +40,7 @@ function renderTabBar(props: TabBarPropsType) {
   );
 }
 
-const IndexTabs = (): JSX.Element => (
+const IndexNav = (): JSX.Element => (
   <Tabs
     tabs={tabs}
     initialPage={1}
@@ -54,4 +54,4 @@ const IndexTabs = (): JSX.Element => (
   </Tabs>
 );
 
-export default IndexTabs;
+export default IndexNav;

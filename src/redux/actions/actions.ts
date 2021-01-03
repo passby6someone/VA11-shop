@@ -11,3 +11,24 @@ export interface InitAction extends Init {
 export function init(text:string):InitAction {
   return { type: INIT, text };
 }
+
+export const CHANGE_TAB = 'CHANGE_TAB';
+
+export enum TabName {
+  index = 'index',
+  message = 'message',
+  me = 'me',
+}
+
+export interface Tab {
+  TabName: TabName
+}
+
+export interface TabAction extends Tab {
+  type: 'CHANGE_TAB'
+}
+
+export const changeTab = (changedName: TabName): TabAction => ({
+  type: CHANGE_TAB,
+  TabName: changedName,
+});

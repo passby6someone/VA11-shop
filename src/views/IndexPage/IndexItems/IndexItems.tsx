@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import MasonryContainer from '@component/MasonryContainer/MasonryContainer';
 import Item from '@component/MasonryItem/MasonryItem';
 
-function IndexItems() {
+import './IndexItems.css';
+
+function IndexItems(): JSX.Element {
   return (
-    <div style={{ height: 'calc(100vh - 95px)', overflow: 'scroll' }}>
+    <div className="IndexItems-container">
       <MasonryContainer>
         <Link to="/item"><Item /></Link>
         <Item />

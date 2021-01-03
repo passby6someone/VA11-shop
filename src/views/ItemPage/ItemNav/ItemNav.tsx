@@ -1,13 +1,11 @@
 import React from 'react';
 import { NavBar, Icon } from 'antd-mobile';
 
+import './ItemNav.css';
+
 function ItemNav(): JSX.Element {
   return (
-    <div
-      style={{
-        position: 'fixed', left: '0px', right: '0px', top: '0px', zIndex: 10,
-      }}
-    >
+    <div className="ItemNav-nav">
       <NavBar
         mode="light"
         icon={<Icon type="left" />}

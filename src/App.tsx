@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { basename, store } from './config/config';
 import Loading from './components/Loading';
 
-const IndexPage = loadable(() => import('./views/IndexPage/IndexPage'), {
+const MainPage = loadable(() => import('./views/MainPage'), {
   fallback: <Loading />,
 });
 
@@ -24,7 +24,7 @@ function App():JSX.Element {
             <ItemPage />
           </Route>
           <Route path="/">
-            <IndexPage />
+            <MainPage />
           </Route>
         </Switch>
       </BrowserRouter>
