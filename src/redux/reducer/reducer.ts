@@ -6,7 +6,6 @@ import {
   Init,
   CHANGE_TAB,
   TabAction,
-  TabName,
   Tab,
 } from '@actions/actions';
 import { Store } from '@store/store';
@@ -16,7 +15,7 @@ const initStore: Store = {
     text: 'test',
   },
   tab: {
-    TabName: TabName.index,
+    TabName: 'index',
   },
 };
 

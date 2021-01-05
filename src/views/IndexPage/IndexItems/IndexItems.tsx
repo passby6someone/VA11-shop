@@ -1,21 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import MasonryContainer from '@component/MasonryContainer/MasonryContainer';
-import Item from '@component/MasonryItem/MasonryItem';
+import { MasonryContainer as Container, MasonryItem as Item } from '@component/Masonry/Masonry';
 
 import './IndexItems.css';
 
 function IndexItems(): JSX.Element {
   return (
     <div className="IndexItems-container">
-      <MasonryContainer>
+      <Container>
         <Link to="/item"><Item /></Link>
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-      </MasonryContainer>
+        <Link to="/item"><Item /></Link>
+        <Link to="/item"><Item /></Link>
+        <Link to="/item"><Item /></Link>
+        <Link to="/item"><Item /></Link>
+      </Container>
     </div>
   );
 }

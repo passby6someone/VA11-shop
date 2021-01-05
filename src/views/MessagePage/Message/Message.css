@@ -1,0 +1,47 @@
+
+.MessagePage-messageList-container {
+  flex: 1;
+  background-color: #DDD;
+}
+
+.MessagePage-message-container {
+  display: flex;
+  padding: 0.2rem 0.4rem;
+  background-color: white;
+  border-bottom: 1px solid #EEE;
+}
+
+.MessagePage-user-figure {
+  margin: 0px;
+  margin-right: 0.1rem;
+}
+
+.MessagePage-user-figure img {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+
+.MessagePage-message-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.MessagePage-message-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.MessagePage-message-time {
+  font-size: 10px;
+  color: #888;
+}
+
+.MessagePage-message-body {
+  color: #888;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Tag } from 'antd-mobile';
 
-import './MeHeader.css';
+import './UserInfo.css';
 
-function MeHeader(): JSX.Element {
+function UserInfo(): JSX.Element {
   return (
     <header className="MePage-header">
       <section className="MePage-figure-container">
@@ -42,4 +42,4 @@ function MeHeader(): JSX.Element {
   );
 }
 
-export default MeHeader;
+export default UserInfo;

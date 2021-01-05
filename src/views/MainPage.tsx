@@ -15,6 +15,9 @@ import Loading from '@component/Loading';
 const IndexPage = loadable(() => import('./IndexPage/IndexPage'), {
   fallback: <Loading />,
 });
+const MessagePage = loadable(() => import('./MessagePage/MessagePage'), {
+  fallback: <Loading />,
+});
 const MePage = loadable(() => import('./MePage/MePage'), {
   fallback: <Loading />,
 });
@@ -51,10 +54,10 @@ function IndexTabBar(props: Iprops): JSX.Element {
           key="Index"
           icon={<BorderOutlined />}
           selectedIcon={<BookFilled />}
-          selected={curTab === TabName.index}
+          selected={curTab === 'index'}
           onPress={() => {
-            setCurTab(TabName.index);
-            onClickTab(TabName.index);
+            setCurTab('index');
+            onClickTab('index');
           }}
         >
           <IndexPage />
@@ -64,23 +67,23 @@ function IndexTabBar(props: Iprops): JSX.Element {
           key="Message"
           icon={<BorderOutlined />}
           selectedIcon={<BookFilled />}
-          selected={curTab === TabName.message}
+          selected={curTab === 'message'}
           onPress={() => {
-            setCurTab(TabName.message);
-            onClickTab(TabName.message);
+            setCurTab('message');
+            onClickTab('message');
           }}
         >
-          <div>首页</div>
+          <MessagePage />
         </TabBar.Item>
         <TabBar.Item
           title="我"
           key="Me"
           icon={<BorderOutlined />}
           selectedIcon={<BookFilled />}
-          selected={curTab === TabName.me}
+          selected={curTab === 'me'}
           onPress={() => {
-            setCurTab(TabName.me);
-            onClickTab(TabName.me);
+            setCurTab('me');
+            onClickTab('me');
           }}
         >
           <MePage />

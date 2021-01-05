@@ -11,5 +11,5 @@
 
 .MasonryContainer > div {
   display: block;
-  width: 50vw;
+  width: calc(50vw - 0.075rem);
 }

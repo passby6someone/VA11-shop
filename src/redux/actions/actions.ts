@@ -14,11 +14,7 @@ export function init(text:string):InitAction {
 
 export const CHANGE_TAB = 'CHANGE_TAB';
 
-export enum TabName {
-  index = 'index',
-  message = 'message',
-  me = 'me',
-}
+export type TabName = 'index' | 'message' | 'me';
 
 export interface Tab {
   TabName: TabName
