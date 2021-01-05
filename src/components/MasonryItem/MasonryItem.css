@@ -5,7 +5,7 @@
   box-shadow: 0 0.05rem 0.08rem 0 rgba(0,0,0,.1);
   overflow: hidden;
   break-inside: avoid;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.15rem;
 }
 
 .MasonryItem-container .item-thumbnail img {

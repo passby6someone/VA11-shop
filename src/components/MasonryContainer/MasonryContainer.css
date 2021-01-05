@@ -1,8 +1,15 @@
 .MasonryContainer {
   width: 100vw;
-  column-count: 2;
-  column-gap: 0.5em;
+  display: flex;
   padding: 0.5em;
-  display: block;
   overflow: scroll;
+}
+
+.MasonryContainer > div:first-child {
+  margin-right: 0.15rem;
+}
+
+.MasonryContainer > div {
+  display: block;
+  width: 50vw;
 }

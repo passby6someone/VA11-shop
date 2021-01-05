@@ -42,7 +42,7 @@ function IndexTabBar(props: Iprops): JSX.Element {
   return (
     <div
       style={{
-        position: 'fixed', bottom: '0px', left: '0px', right: '0px', height: '100vh', width: '100vw',
+        height: '100vh', width: '100vw', overflow: 'scroll',
       }}
     >
       <TabBar>
