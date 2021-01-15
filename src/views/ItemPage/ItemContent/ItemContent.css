@@ -1,6 +1,6 @@
 .ItemContent-section {
   padding: 0.2rem;
-  margin-bottom: 50px;
+  border-bottom: 1px solid #DDD;
 }
 
 .ItemContent-footer-container {

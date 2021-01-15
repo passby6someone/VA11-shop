@@ -23,7 +23,6 @@ function ItemContent(): JSX.Element {
           </div>
         </footer>
       </section>
-      <hr />
     </article>
   );
 }

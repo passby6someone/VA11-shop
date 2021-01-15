@@ -1,0 +1,39 @@
+.ItemComment-container {
+  margin-bottom: 50px;
+  padding: 0.2rem;
+}
+
+.ItemComment-avatar-md {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  margin-right: 0.2rem;
+}
+
+.ItemComment-avatar-sm {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  margin-right: 0.2rem;
+}
+
+.ItemComment-commentBar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.ItemComment-commentButton {
+  flex: 1;
+  border-radius: 32px;
+  background-color: #EEE;
+  color: #AAA;
+  line-height: 0.6rem;
+  height: 0.6rem;
+  padding-left: 0.2rem;
+}
+
+.ItemComment-totalcomment {
+  font-size: 0.1rem;
+  margin-bottom: 0.2rem;
+}
